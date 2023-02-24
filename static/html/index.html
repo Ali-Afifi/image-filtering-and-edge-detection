@@ -1,0 +1,64 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>image manipulator</title>
+
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.4/cropper.min.css"
+		/>
+		<link rel="stylesheet" href="../static/css/style.css" />
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/0.8.1/cropper.min.js"></script>
+	</head>
+
+	<body>
+		<div class="page flex-column">
+			<h1 class="title">Image Filtering and Edge Detection</h1>
+			<div class="main-section flex-row">
+				<div class="image-container flex-column">
+					<h3>Input Image</h3>
+					<div id="image1" class="image"></div>
+					<div class="file-input">
+						<input
+							type="file"
+							class="form-control"
+							id="image-input1"
+						/>
+					</div>
+				</div>
+				<div class="controls flex-column">
+					<select id="select" class="select">
+						<option value="option1">option 1</option>
+						<option value="option2">option 2</option>
+						<option value="option3">option 3</option>
+						<option value="option4">option 4</option>
+						<option value="option5">option 5</option>
+						<option value="option6">option 6</option>
+						<option value="option7">option 7</option>
+					</select>
+					<br />
+
+					<button id="result-btn" class="btn">Process</button>
+				</div>
+				<div class="image-container flex-column">
+					<h3>Output Image</h3>
+
+					<div id="image2" class="image"></div>
+					<div class="file-input">
+					
+						<button id="download-btn" class="download-btn">download</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../static/js/index.js"></script>
+</html>
