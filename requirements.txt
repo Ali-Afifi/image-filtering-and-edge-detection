@@ -2,3 +2,5 @@ Flask==1.1.2
 Flask-Cors==3.0.10
 Flask-HTTPAuth==3.2.4
 Flask-RESTful==0.3.8
+numpy==1.19.5
+opencv-python==4.7.0.68
