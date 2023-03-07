@@ -17,6 +17,12 @@ h3 {
     margin: 0;
 }
 
+img {
+    object-fit: scale-down;
+    height: 100%;
+    width: auto;
+}
+
 .flex-row {
     display: flex;
     flex-direction: row;
@@ -38,7 +44,9 @@ h3 {
 
     border: 2px solid rgba(55, 53, 53, 0.713);
 
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -97,7 +105,9 @@ h3 {
     cursor: pointer;
 }
 
-
+.image-container {
+    margin: 1rem;
+}
 
 
 .select:hover {

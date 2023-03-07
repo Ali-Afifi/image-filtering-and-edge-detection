@@ -22,7 +22,7 @@
 			crossorigin="anonymous"
 			referrerpolicy="no-referrer"
 		/>
-		
+
 		<link rel="stylesheet" href="../static/css/style.css" />
 
 		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/0.8.1/cropper.min.js"></script> -->
@@ -38,15 +38,34 @@
 		<div class="page flex-column">
 			<h1 class="title">Image Filtering and Edge Detection</h1>
 			<div class="main-section flex-row">
-				<div class="image-container flex-column">
-					<h3>Input Image</h3>
-					<div id="image1" class="image"></div>
-					<div class="file-input">
-						<input
-							type="file"
-							class="form-control"
-							id="image-input1"
-						/>
+				<div class="flex-column">
+					<div
+						class="image-container flex-column"
+						id="main-image-input"
+					>
+						<h3>Input Image</h3>
+						<div id="image1-container" class="image"></div>
+						<div class="file-input">
+							<input
+								type="file"
+								class="form-control"
+								id="image-input1"
+							/>
+						</div>
+					</div>
+					<div
+						class="image-container flex-column"
+						id="secondary-image-input"
+					>
+						<h3>Input Image</h3>
+						<div id="image2-container" class="image"></div>
+						<div class="file-input">
+							<input
+								type="file"
+								class="form-control"
+								id="image-input2"
+							/>
+						</div>
 					</div>
 				</div>
 				<div class="controls flex-column">

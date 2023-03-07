@@ -1,67 +1,75 @@
-let upload = document.getElementById("image-input1");
+let upload1 = document.getElementById("image-input1");
+let upload2 = document.getElementById("image-input2");
 
-let image1 = document.getElementById("image1");
-let image2 = document.getElementById("image2");
+let image1 = document.getElementById("image1-container");
+let image2 = document.getElementById("image2-container");
+
+let secondaryImageInput = document.getElementById("secondary-image-input");
 
 let resultBtn = document.getElementById("result-btn");
 
 let selectBox = document.getElementById("select");
 
+secondaryImageInput.style.display = "none";
 
-let croppedImage1, croppedImage2;
+selectBox.addEventListener("change", (e) => {
+	if (e.target.value == "option3") {
+		secondaryImageInput.style.display = "block";
+	} else {
+		secondaryImageInput.style.display = "none";
+	}
+});
 
-upload.addEventListener("change", (e) => {
+upload1.addEventListener("change", (e) => {
 	if (e.target.files.length) {
 		const reader = new FileReader();
 		reader.onload = (e) => {
 			if (e.target.result) {
 				let img = document.createElement("img");
-				img.id = "image";
+				img.id = "image1";
 				img.src = e.target.result;
 
 				image1.innerHTML = "";
 				image1.appendChild(img);
 
-				cropper1 = new Cropper(img, {
-					zoomOnWheel: false,
-					movable: false,
-					guides: false,
+				const viewer = new Viewer(document.getElementById("image1"), {
+					inline: true,
+					viewed() {
+						viewer.zoomTo(1);
+					},
 				});
-
-				croppedImage1 = cropper1;
 			}
 		};
 		reader.readAsDataURL(e.target.files[0]);
 	}
 });
 
-// upload2.addEventListener("change", (e) => {
-// 	if (e.target.files.length) {
-// 		const reader = new FileReader();
-// 		reader.onload = (e) => {
-// 			if (e.target.result) {
-// 				let img = document.createElement("img");
-// 				img.id = "image";
-// 				img.src = e.target.result;
+upload2.addEventListener("change", (e) => {
+	if (e.target.files.length) {
+		const reader = new FileReader();
+		reader.onload = (e) => {
+			if (e.target.result) {
+				let img = document.createElement("img");
+				img.id = "image2";
+				img.src = e.target.result;
 
-// 				image2.innerHTML = "";
-// 				image2.appendChild(img);
+				image2.innerHTML = "";
+				image2.appendChild(img);
 
-// 				cropper2 = new Cropper(img, {
-// 					zoomOnWheel: false,
-// 					movable: false,
-// 					guides: false,
-// 				});
-
-// 				croppedImage2 = cropper2;
-// 			}
-// 		};
-// 		reader.readAsDataURL(e.target.files[0]);
-// 	}
-// });
+				const viewer = new Viewer(document.getElementById("image2"), {
+					inline: true,
+					viewed() {
+						viewer.zoomTo(1);
+					},
+				});
+			}
+		};
+		reader.readAsDataURL(e.target.files[0]);
+	}
+});
 
 resultBtn.onclick = (e) => {
-	let b64Image1 = croppedImage1.getCroppedCanvas().toDataURL("image/png");
+	let imgDataURL1 = document.getElementById("image1").src;
 
 	fetch(`${window.location}process`, {
 		method: "POST",
@@ -69,7 +77,7 @@ resultBtn.onclick = (e) => {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({
-			image1: b64Image1,
+			image1: imgDataURL1,
 			// image2: b64Image2,
 			option: selectBox.value,
 			// mag: uniformMagnitudeCheckBox.checked,
@@ -80,6 +88,8 @@ resultBtn.onclick = (e) => {
 		.then((data) => {
 			result.src = data["img"];
 			resultSection.style.display = "block";
+
+			console.log(data);
 		})
 		.catch((err) => console.log(err));
 };
