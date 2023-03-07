@@ -23,3 +23,12 @@ def gray_scale():
     imgGray = 0.2989 * R + 0.5870 * G + 0.1140 * B
 
     cv2.imwrite("./output/output.jpeg", imgGray)
+
+
+# global threshold
+
+def global_threshold(thresh = 100):
+    image = cv2.imread('./input/input.jpeg', 0)
+    modified_image = ((image > thresh) * 255).astype("uint8")
+    cv2.imwrite("./output/output.jpeg", modified_image)
+
