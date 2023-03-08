@@ -19,11 +19,16 @@ def main():
     return send_file("./static/html/index.html")
 
 
+@app.route('/download')
+def downloadFile():
+    return send_file(f"./output/output.jpeg", mimetype="image/png")
+
+
 @app.route("/process", methods=["POST"])
 def process_images():
 
     if request.method == "POST":
-
+        data = request.get_json()
         return jsonify(msg="done")
 
 

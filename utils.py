@@ -197,10 +197,10 @@ def global_threshold(thresh=100):
     modified_image = ((image > thresh) * 255).astype("uint8")
     cv2.imwrite("./output/output.jpeg", modified_image)
 
-# Q7 Local thresholding (2)
+# Q7 Local threshold (2)
 
 
-def Local_thresholding():
+def Local_threshold():
 
     path = "./samples/dog.jpeg"
     image = Image.open(os.path.join(path)).convert('L')
