@@ -4,19 +4,70 @@ let upload2 = document.getElementById("image-input2");
 let image1 = document.getElementById("image1-container");
 let image2 = document.getElementById("image2-container");
 
+let outputImage = document.getElementById("output-image");
+
 let secondaryImageInput = document.getElementById("secondary-image-input");
 
 let resultBtn = document.getElementById("result-btn");
 
 let selectBox = document.getElementById("select");
+let secondarySelectBox = document.getElementById("sub-select");
 
 secondaryImageInput.style.display = "none";
+secondarySelectBox.style.display = "none";
 
 selectBox.addEventListener("change", (e) => {
-	if (e.target.value == "option3") {
-		secondaryImageInput.style.display = "block";
+	option = e.target.value;
+
+	if (option == "option4") {
+		secondarySelectBox.style.display = "block";
+		secondarySelectBox.innerHTML = "";
+
+		for (let i = 0; i < 2; i++) {
+			var opt = document.createElement("option");
+			opt.value = i;
+
+			switch (i) {
+				case 0:
+					opt.innerHTML = "Histogram";
+					break;
+
+				case 1:
+					opt.innerHTML = "Distribution Curve";
+					break;
+
+				default:
+					break;
+			}
+
+			secondarySelectBox.appendChild(opt);
+		}
+	} else if (option == "option7") {
+		secondarySelectBox.style.display = "block";
+		secondarySelectBox.style.display = "block";
+		secondarySelectBox.innerHTML = "";
+
+		for (let i = 0; i < 2; i++) {
+			var opt = document.createElement("option");
+			opt.value = i;
+
+			switch (i) {
+				case 0:
+					opt.innerHTML = "local threshold";
+					break;
+
+				case 1:
+					opt.innerHTML = "global threshold";
+					break;
+
+				default:
+					break;
+			}
+
+			secondarySelectBox.appendChild(opt);
+		}
 	} else {
-		secondaryImageInput.style.display = "none";
+		secondarySelectBox.style.display = "none";
 	}
 });
 
@@ -70,6 +121,7 @@ upload2.addEventListener("change", (e) => {
 
 resultBtn.onclick = (e) => {
 	let imgDataURL1 = document.getElementById("image1").src;
+	// let imgDataURL2 = document.getElementById("image2").src;
 
 	fetch(`${window.location}process`, {
 		method: "POST",
@@ -78,17 +130,14 @@ resultBtn.onclick = (e) => {
 		},
 		body: JSON.stringify({
 			image1: imgDataURL1,
-			// image2: b64Image2,
-			option: selectBox.value,
-			// mag: uniformMagnitudeCheckBox.checked,
-			// phase: uniformPhaseCheckBox.checked,
+			// image2: imgDataURL2 ? imgDataURL2 : "",
+			option1: selectBox.value,
+			option2: selectBox.value == "option4" ? "option4" : selectBox.value == "option7" ? "option7" : "" 
 		}),
 	})
 		.then((res) => res.json())
 		.then((data) => {
-			result.src = data["img"];
-			resultSection.style.display = "block";
-
+			
 			console.log(data);
 		})
 		.catch((err) => console.log(err));

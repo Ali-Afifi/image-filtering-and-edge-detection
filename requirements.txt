@@ -4,3 +4,5 @@ Flask-HTTPAuth==3.2.4
 Flask-RESTful==0.3.8
 numpy==1.19.5
 opencv-python==4.7.0.68
+matplotlib==3.3.4
+Pillow==8.1.2
