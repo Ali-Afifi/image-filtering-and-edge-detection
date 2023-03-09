@@ -32,6 +32,7 @@ robert_kernel2 = np.array([[0, 1],
 
 # ---------------------------Edge Detection-----------
 
+# padding is using for not losing the image pixel dimension
 def convolve2D(image_data, kernel, padding = 0):
     padding_width = kernel.shape[0] // 2   # in our case 3x3 it will be 1px in all sides
 
