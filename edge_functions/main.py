@@ -4,7 +4,7 @@ import cv2 as cv
 import matplotlib.pyplot as plt
 
 # ---------------------------Demo Image----------
-path = "jocelyn-morales-mGmhfO2CVV8-unsplash (1).jpg"
+path = "trial.jpg"
 image_data = cv.imread(path, 0)
 # image_data = cv.cvtColor(src= image_data, code=cv.COLOR_BGR2GRAY)
 image = cv.resize(image_data, (400, 400))
@@ -84,12 +84,8 @@ Sobel Function for edge detection:
     Gy => the result of convolving sobel_kernel2 with image.
     by using square root of Gx ** 2 + Gy ** 2, you will get the magnitude of the edge and combine.
 
-"""
-# combine = edge_detection(image, sobel_kernel1, sobel_kernel2)
-# saved = cv.imwrite("sobel.jpg",combine)
-# if saved:
-#     print("yes".swapcase())
-"""
+
+
 Roberts function:
     the input to the operator is a grayscale image, as is the output.
     we will convolve the image with the kernels.
@@ -97,7 +93,12 @@ Roberts function:
     gradient mag (G) can be optained like the soble by taking square root of G_x_square + G_y_square
 
 """
-# combine = edge_detection(image, robert_kernel1, robert_kernel2)
-# saved = cv.imwrite("robert.jpg",combine)
-# if saved:
-#     print("yes".swapcase())
+#combine = edge_detection(image, sobel_kernel1, sobel_kernel2)
+#saved = cv.imwrite("sobel.jpg",combine)
+#if saved:
+#    print("yes".swapcase())
+
+combine = edge_detection(image, robert_kernel1, robert_kernel2)
+saved = cv.imwrite("robert.jpg",combine)
+if saved:
+    print("yes".swapcase())
