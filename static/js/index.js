@@ -19,13 +19,13 @@ secondarySelectBox.style.display = "none";
 selectBox.addEventListener("change", (e) => {
 	option = e.target.value;
 
-	if (option == "option4") {
+	if (option == "4") {
 		secondarySelectBox.style.display = "block";
 		secondarySelectBox.innerHTML = "";
 
 		for (let i = 0; i < 2; i++) {
 			var opt = document.createElement("option");
-			opt.value = i;
+			opt.value = i + 1;
 
 			switch (i) {
 				case 0:
@@ -42,14 +42,14 @@ selectBox.addEventListener("change", (e) => {
 
 			secondarySelectBox.appendChild(opt);
 		}
-	} else if (option == "option7") {
+	} else if (option == "7") {
 		secondarySelectBox.style.display = "block";
 		secondarySelectBox.style.display = "block";
 		secondarySelectBox.innerHTML = "";
 
 		for (let i = 0; i < 2; i++) {
 			var opt = document.createElement("option");
-			opt.value = i;
+			opt.value = i + 1;
 
 			switch (i) {
 				case 0:
@@ -131,14 +131,29 @@ resultBtn.onclick = (e) => {
 		body: JSON.stringify({
 			image1: imgDataURL1,
 			// image2: imgDataURL2 ? imgDataURL2 : "",
-			option1: selectBox.value,
-			option2: selectBox.value == "option4" ? "option4" : selectBox.value == "option7" ? "option7" : "" 
+			option1: Number(selectBox.value),
+			option2:
+				selectBox.value == "4" || selectBox.value == "7"
+					? Number(secondarySelectBox.value)
+					: 0,
 		}),
 	})
 		.then((res) => res.json())
 		.then((data) => {
-			
-			console.log(data);
+			let img = document.createElement("img");
+			img.id = "result-image";
+			img.src = data["img"];
+
+			outputImage.innerHTML = "";
+			outputImage.appendChild(img);
+
+			const viewer = new Viewer(document.getElementById("result-image"), {
+				inline: true,
+				viewed() {
+					viewer.zoomTo(1);
+				},
+			});
+			// console.log(data);
 		})
 		.catch((err) => console.log(err));
 };

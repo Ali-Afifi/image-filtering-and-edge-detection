@@ -152,6 +152,7 @@ def draw_histogram():
     hist = make_histogram(flat)
     plt.plot(hist)
     plt.savefig("./output/output.jpeg")
+    plt.clf()
 
     return flat, img_h, img_w, hist
 
@@ -163,6 +164,8 @@ def draw_distribution_curve():
     cs = make_cumsum(hist)
     plt.plot(cs)
     plt.savefig("./output/output.jpeg")
+    plt.clf()
+    
     return cs
 
 
@@ -177,6 +180,7 @@ def draw_histogram_equalization():
     hist_equ = make_histogram(new_img)
     plt.plot(hist_equ)
     plt.savefig("./output/output.jpeg")
+    plt.clf()
 
 
 # Q6 normalize the image
@@ -202,7 +206,7 @@ def global_threshold(thresh=100):
 
 def Local_threshold():
 
-    path = "./samples/dog.jpeg"
+    path = "./input/input.jpeg"
     image = Image.open(os.path.join(path)).convert('L')
     pixels = asarray(image)
     image_array = np.array(pixels)
@@ -225,6 +229,7 @@ def Local_threshold():
     img.set_cmap('gray')
     plt.axis('off')
     plt.savefig("./output/output.jpeg", bbox_inches='tight')
+    plt.clf()
 
 
 # Q8 transform to gray scale
