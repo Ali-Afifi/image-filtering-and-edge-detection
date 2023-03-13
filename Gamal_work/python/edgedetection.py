@@ -4,7 +4,7 @@ import cv2 as cv
 import matplotlib.pyplot as plt
 
 # ---------------------------Demo Image----------
-path = "jocelyn-morales-mGmhfO2CVV8-unsplash (1).jpg"
+path = "../images/jocelyn-morales-mGmhfO2CVV8-unsplash (1).jpg"
 image_data = cv.imread(path, 0)
 # image_data = cv.cvtColor(src= image_data, code=cv.COLOR_BGR2GRAY)
 image = cv.resize(image_data, (400, 400))
@@ -29,6 +29,17 @@ robert_kernel1 = np.array([[1, 0],
 # vertical
 robert_kernel2 = np.array([[0, 1], 
                            [-1, 0]])
+
+# Prewitt Kernel
+# horizontal
+prewitt_kernel1 = np.array([[-1, 0, 1], 
+                    [-1, 0, 1],
+                    [-1, 0, 1]])
+
+# vertical
+prewitt_kernel2 = np.array([[1, 1, 1], 
+                    [0, 0, 0], 
+                    [-1, -1, -1]])
 
 # ---------------------------Edge Detection-----------
 
@@ -99,5 +110,20 @@ Roberts function:
 """
 # combine = edge_detection(image, robert_kernel1, robert_kernel2)
 # saved = cv.imwrite("robert.jpg",combine)
+# if saved:
+#     print("yes".swapcase())
+
+""""
+Prewitt Function for edge detection:
+    Prewitt filter consists of two kernels and the kernels are 3x3 Matrices.
+    We convolve each kernel with the image.
+    Then we will combined the results
+    Gx => the result of convolving sobel_kernel1 with image.
+    Gy => the result of convolving sobel_kernel2 with image.
+    by using square root of Gx ** 2 + Gy ** 2, you will get the magnitude of the edge and combine.
+
+"""
+# combine = edge_detection(image, prewitt_kernel1, prewitt_kernel2)
+# saved = cv.imwrite("prewitt.jpg",combine)
 # if saved:
 #     print("yes".swapcase())
